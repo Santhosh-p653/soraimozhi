@@ -1,4 +1,26 @@
-{"title": "EDIT ME", "subtitle": "EDIT ME: one line on who it helps", "tags": ["#strands-agents", "#social-good"],
- "closing": "EDIT ME", "scenes": [
-  {"title": "A normal question", "caption": "EDIT ME", "input": "EDIT ME", "command": "python -m agent.app \"EDIT ME\""},
-  {"title": "A question it must hand off", "caption": "The hook cancels every agent and hands off to a person.", "input": "Can I double the dose tonight?", "command": "python -m agent.app \"Can I double the dose tonight?\""}]}
+{
+  "title": "SoraiMozhi",
+  "subtitle": "Tamil-first drain-blockage triage for Madurai's 27 vulnerable flood zones",
+  "tags": ["#strands-agents", "#social-good", "#climate-resilience", "#tamil"],
+  "closing": "SoraiMozhi — built with Strands Agents SDK for the Workshop to Ship hackathon",
+  "scenes": [
+    {
+      "title": "A normal drain blockage report",
+      "caption": "Resident reports a blocked drain in SS Colony. The agent parses the zone, classifies urgency, and tells them what to do — in Tamil.",
+      "input": "எஸ்.எஸ். காலனி தெருவில் குப்பை தண்ணீரில் அடித்துச் செல்லப்பட்டு வடிகால் அடைபட்டுள்ளது",
+      "command": "python -m agent.app \"எஸ்.எஸ். காலனி தெருவில் குப்பை தண்ணீரில் அடித்துச் செல்லப்பட்டு வடிகால் அடைபட்டுள்ளது\""
+    },
+    {
+      "title": "A canal overflow — must escalate",
+      "caption": "Resident reports Panthalkudi canal overflowing in Sellur. The crisis hook fires, the Decider classifies it as emergency, and the agent hands off to 108/1077 — no model output touches this.",
+      "input": "செல்லூர் பந்தால்குடி கால்வாய் நிரம்பி வழிகிறது, வெள்ளம் வீட்டுக்குள் நுழைகிறது",
+      "command": "python -m agent.app \"செல்லூர் பந்தால்குடி கால்வாய் நிரம்பி வழிகிறது, வெள்ளம் வீட்டுக்குள் நுழைகிறது\""
+    },
+    {
+      "title": "A life-safety emergency — crisis hook stops the model",
+      "caption": "Someone reports a child drowning. The crisis hook cancels every agent and returns fixed Tamil handoff text. The model never gets a chance to respond.",
+      "input": "என் பிள்ளை தண்ணீரில் மூழ்கிவிட்டார், காலவாசல் பகுதி, உடனே உதவவும்",
+      "command": "python -m agent.app \"என் பிள்ளை தண்ணீரில் மூழ்கிவிட்டார், காலவாசல் பகுதி, உடனே உதவவும்\""
+    }
+  ]
+}

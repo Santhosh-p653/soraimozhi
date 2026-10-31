@@ -1,14 +1,18 @@
-# Failures we found and fixed
+# FAILURES.md
 
-Judges trust a project that shows what broke. Add one `## ` entry per real failure, newest first.
-`ss ship` needs at least one. Keep the numbers from `results/MEASURE.md`, before and after.
+Log what broke, how you found it, what you changed, and the re-measured number.
 
-<!-- Copy this block for each failure:
+## Format
 
-## <short name> (<date>)
-- What broke: <the case id and what the plan said>
-- How we found it: <ss measure / a tester / red-team case>
-- What we changed: <file and change>
-- After: <the re-measured number>
+```
+### [date] — short description
+- **What broke:** ...
+- **How found:** ss measure / ss cases check / manual test
+- **Root cause:** ...
+- **Fix:** ...
+- **Re-measured:** ...
+```
 
--->
+---
+
+(no failures yet — first measurement pending)

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoraiMozhi — மதுரை வெள்ள முப்பரிமாணம்</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+</head>
+<body>
+    <header>
+        <h1><span>🌊</span> SoraiMozhi <span style="font-size:0.85em;opacity:0.8">சோறை மொழி</span></h1>
+        <p>Madurai flood &amp; drain-blockage triage agent — Tamil-first climate resilience</p>
+    </header>
+
+    <div class="container">
+        <!-- Stats row -->
+        <div class="grid grid-3" style="margin-bottom: 1.5rem">
+            <div class="card stat-card">
+                <div class="stat-number" id="statImmediate">0</div>
+                <div class="stat-label">Immediate</div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-number" id="statTotal">0</div>
+                <div class="stat-label">Reports Triaged</div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-number" id="statHandoffs">0</div>
+                <div class="stat-label">Crisis Handoffs</div>
+            </div>
+        </div>
+
+        <div class="grid grid-2">
+            <!-- Left: Report input -->
+            <div class="card">
+                <h2><span class="icon">📝</span> Resident Report</h2>
+
+                <div style="margin-bottom: 0.8rem">
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Select zone:</span>
+                    <span id="zoneHint" style="font-size: 0.85rem; margin-left: 0.5rem;"></span>
+                </div>
+                <div style="margin-bottom: 0.8rem">
+                    {% for z in zones %}
+                    <span class="chip" data-zone="{{ z.id }}" data-lang="ta">{{ z.name_ta }}</span>
+                    <span class="chip" data-zone="{{ z.id }}" data-lang="en">{{ z.name_en }}</span>
+                    {% endfor %}
+                </div>
+
+                <textarea id="reportInput" placeholder="உங்கள் தெருவில் என்ன நடக்கிறது? / What's happening in your street?"></textarea>
+
+                <div style="display: flex; gap: 0.8rem; margin-top: 0.8rem">
+                    <button class="btn btn-primary" id="submitBtn">&#128205; Submit Report</button>
+                    <button class="btn btn-secondary" id="batchBtn">&#9889; Batch Triage All Zones</button>
+                </div>
+
+                <div class="alert-emergency" id="emergencyAlert"></div>
+
+                <!-- Triage result -->
+                <div class="triage-result" id="triageResult"></div>
+            </div>
+
+            <!-- Right: Priority list + console -->
+            <div>
+                <!-- Priority list -->
+                <div class="card" style="margin-bottom: 1.5rem">
+                    <h2><span class="icon">📊</span> Clearance Priority List</h2>
+                    <div class="priority-list" id="priorityList">
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Submit reports or run batch triage to see the ranked clearance list.</p>
+                    </div>
+                </div>
+
+                <!-- Evidence console -->
+                <div class="card">
+                    <h2><span class="icon">🖥️</span> Agent Evidence</h2>
+                    <div class="console" id="console">
+                        <div class="console-line"><span style="opacity:0.6">// SoraiMozhi agent ready. Submit a report to begin.</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>SoraiMozhi — Strands SDK Workshop to Ship hackathon entry · Climate Resilience</p>
+        <p>Built for Madurai's 27 vulnerable flood zones · Tamil-first · Climate Resilience</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

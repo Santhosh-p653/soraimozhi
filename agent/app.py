@@ -163,6 +163,10 @@ def run(case: dict) -> dict:
         meta["path"] = "handoff"
     else:
         ans = res.results["planner"].result.structured_output
+        # Track critic outcome for measure.py.
+        critic_res = res.results.get("critic")
+        critic_v = getattr(critic_res.result, "structured_output", None) if critic_res else None
+        meta["critic_ok"] = critic_v.ok if critic_v else False
         if ans is None:
             # Fail-closed: critic never passed after 2 tries.
             print("[safety] FAIL-CLOSED: critic never passed -> unverified, manual review", flush=True)
@@ -287,7 +291,14 @@ def main(argv=None):
     ap.add_argument("--json", action="store_true", help="output as JSON")
     a = ap.parse_args(argv)
     out = run({"text": a.text})
-    print(json.dumps(out, ensure_ascii=False, indent=2) if a.json else "\n" + out["plan"]["answer"])
+    if a.json:
+        print(json.dumps(out, ensure_ascii=False, indent=2))
+    else:
+        plan = out["plan"]
+        print(f"\n[{plan['severity'].upper()}] {plan['zone_name']} — {plan['report_type']}")
+        print(f"\n{plan['summary']}")
+        print(f"\nAction: {plan['recommended_action']}")
+        print(f"Escalation: {plan['escalation']}")
     return 0
 
 
