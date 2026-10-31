@@ -1,0 +1,24 @@
+{
+  "zones": [
+    {"id": "sellur", "name_en": "Sellur", "name_ta": "செல்லூர்", "ward": 42, "type": "urban", "canal": "Panthalkudi", "vulnerability": "high", "notes": "Panthalkudi canal carries overflow from Sellur tank to Vaigai; debris-blocked; UGD decades old"},
+    {"id": "ss_colony", "name_en": "SS Colony", "name_ta": "எஸ்.எஸ். காலனி", "ward": 38, "type": "urban", "canal": "Panthalkudi", "vulnerability": "high", "notes": "Garbage hotspots; waste washed into stormwater drains"},
+    {"id": "kalavasal", "name_en": "Kalavasal", "name_ta": "காலவாசல்", "ward": 25, "type": "urban", "canal": "Panthalkudi", "vulnerability": "high", "notes": "Major commercial corridor; persistent garbage hotspot; waterlogging on main roads"},
+    {"id": "villapuram", "name_en": "Villapuram", "name_ta": "விலாபுரம்", "ward": 55, "type": "urban", "canal": "UGD", "vulnerability": "high", "notes": "Dense residential; UGD overflow during rain; waste-vulnerable zone"},
+    {"id": "mattuthavani", "name_en": "Mattuthavani", "name_ta": "மத்துத்தவனி", "ward": 30, "type": "urban", "canal": "Vaigai", "vulnerability": "high", "notes": "Bus stand area; torrential rain floods TM Nagar; relief camp nearby"},
+    {"id": "arapalayam", "name_en": "Arapalayam", "name_ta": "ஆரப்பாளையம்", "ward": 18, "type": "urban", "canal": "Vaigai", "vulnerability": "high", "notes": "Road slopes not draining to Vaigai; flooding 3-4 hrs after rain; sponge capacity lost"}
+  ],
+  "shelters": [
+    {"id": "S1", "name": "Mattuthavani Bus Stand Relief Camp", "zone": "mattuthavani", "type": "government_school"},
+    {"id": "S2", "name": "Sellur Govt Higher Secondary School", "zone": "sellur", "type": "government_school"},
+    {"id": "S3", "name": "Villapuram Community Hall", "zone": "villapuram", "type": "community_hall"},
+    {"id": "S4", "name": "Arapalayam Corporation School", "zone": "arapalayam", "type": "government_school"}
+  ],
+  "helpline": "1077",
+  "ambulance": "108",
+  "sources": [
+    "Times of India: Madurai corpn fixing 50 flood-prone spots (Oct 2026)",
+    "New Indian Express: Debris in Panthalkudi canal sparks flood fears (Jul 2026)",
+    "The Hindu: Monitoring Officer inspects monsoon preparedness - 27 vulnerable zones (Oct 2026)",
+    "Times of India: Rain water washes away garbage piles, chokes drains (Oct 2026)"
+  ]
+}

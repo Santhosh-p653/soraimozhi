@@ -1,0 +1,18 @@
+{
+  "items": [
+    {"id": "G-CANAL-OVERFLOW", "text": "Panthalkudi canal overflow: immediate risk. Evacuate low-lying homes near Sellur tank and canal banks. Call 1077.", "source": "New Indian Express Jul 2026; The Hindu Oct 2026", "date": "2026-10"},
+    {"id": "G-CANAL-DEBRIS", "text": "Panthalkudi canal is blocked by debris and sewage. Parts of Sellur are most affected. Report canal blockage to Corporation helpline 1077 immediately.", "source": "New Indian Express Jul 2026", "date": "2026-07"},
+    {"id": "G-DRAIN-BLOCKAGE", "text": "Stormwater drains blocked by uncollected garbage. Report to 1077 with exact street name. Do not attempt to clear drains yourself during rain.", "source": "Times of India Oct 2026", "date": "2026-10"},
+    {"id": "G-WASTE-HOTSPOT", "text": "SS Colony, Surveyor Colony, and Kalavasal are waste-vulnerable zones. Garbage washes into drains during rain. Report accumulation to 1077.", "source": "Times of India Oct 2026", "date": "2026-10"},
+    {"id": "G-WATERLOGGING", "text": "Waterlogging expected in 50 identified vulnerable spots. Corporation has motor pumps ready. Report water stagnation with location to 1077.", "source": "Times of India Oct 2026", "date": "2026-10"},
+    {"id": "G-ROAD-SLOPE", "text": "New road slopes in Sellur and Arapalayam do not drain properly into Vaigai. Flooding lasts 3-4 hours after rainfall. Avoid these routes during rain.", "source": "Times of India May 2024", "date": "2024-05"},
+    {"id": "G-EVACUATE", "text": "If water enters your home, move to higher floor immediately. Nearest relief camp listed by zone. Call 1077 for evacuation assistance.", "source": "The Hindu Oct 2026", "date": "2026-10"},
+    {"id": "G-RELIEF-CAMP", "text": "Relief camps equipped with food, drinking water, medical care. Temporary shelters ready in Mattuthavani, Sellur, Villapuram, Arapalayam.", "source": "The Hindu Oct 2026", "date": "2026-10"},
+    {"id": "G-SPONGE-LOSS", "text": "Madurai has lost sponge capacity due to urbanisation. Rainwater has nowhere to go. Report groundwater depletion and recharge pit opportunities separately.", "source": "Times of India 2024-2026", "date": "2026-10"},
+    {"id": "G-STRUCTURAL", "text": "If you see cracks in embankment, canal wall, or bridge, report to 1077 immediately. Do not cross flooded roads or bridges.", "source": "The Hindu Oct 2026", "date": "2026-10"},
+    {"id": "G-MOTOR-PUMP", "text": "Corporation deploys motor pumps to clear waterlogging in low-lying areas. Report stagnant water with exact location for pump deployment.", "source": "The Hindu Oct 2026", "date": "2026-10"},
+    {"id": "G-HELPLINE", "text": "Toll-free helpline 1077 for rain-related emergencies and grievances. Emergency control room operates 24/7 at District Collectorate.", "source": "The Hindu Oct 2026", "date": "2026-10"},
+    {"id": "G-AMBU-108", "text": "Call 108 for medical emergency during flood: drowning, injury, chest pain, unconscious person.", "source": "TN Health Systems Project", "date": "2026-10"},
+    {"id": "G-RESERVOIR", "text": "Mullaperiyar and Vaigai reservoir levels are low. Drinking water supply under watch. Conserve water even during flood season.", "source": "Times of India 2026", "date": "2026-08"}
+  ]
+}
