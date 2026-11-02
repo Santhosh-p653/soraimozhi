@@ -12,3 +12,5 @@ playwright==1.63.0
 # UI dashboard:
 fastapi==0.115.6
 uvicorn==0.34.0
+# .env loader:
+python-dotenv==1.0.1

@@ -22,8 +22,9 @@ RED_FLAGS = [
     "embankment breach", "canal overflow", "wall collapse", "bridge collapse",
     "person in water", "child in water", "body in water",
     "chest pain", "not breathing", "bleeding heavily",
-    # Tamil
-    "மூழ்கி", "மூழ்கிவிட்டார்", "உயிருக்கு ஆபத்து", "அடைபட்டு", "சிக்கிவிட்டார்",
+    # Tamil — specific person-in-danger phrases only (not infrastructure blockage)
+    "மூழ்கி", "மூழ்கிவிட்டார்", "உயிருக்கு ஆபத்து",
+    "சிக்கிவிட்டார்", "சிக்கியுள்ளனர்", "சிக்கிக்கொண்டார்",
     "நீரில் அடிபட்டு", "வரப்பு உடைந்து", "சுவர் இடிந்து", "பாலம் இடிந்து",
     "குழந்தை தண்ணீரில்", "ரத்தம்", "மூச்சு விடவில்லை", "மயக்கம்",
 ]
@@ -44,19 +45,26 @@ DECIDER_KEY = os.environ.get("DECIDER_API_KEY", "")
 def decide(state: str, questions: dict) -> dict:
     """Call the Strands Decider endpoint. Returns calibrated yes/no/choice answers.
 
-    Falls back to a keyword-based heuristic if DECIDER_API_KEY is not set,
-    so the agent still runs during local development.
+    Retries 3 times on network errors. Falls back to keyword-based heuristic
+    if DECIDER_API_KEY is not set or all retries fail.
     """
-    if DECIDER_KEY:
-        req = urllib.request.Request(
-            DECIDER_URL + "/v1/decide",
-            data=json.dumps({"state": state, "questions": questions}).encode(),
-            headers={"Authorization": f"Bearer {DECIDER_KEY}", "Content-Type": "application/json"},
-        )
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return json.load(r)["answers"]
-    # Fallback: keyword-based urgency scoring when no API key is set.
-    return _heuristic_decide(state, questions)
+    if not DECIDER_KEY:
+        return _heuristic_decide(state, questions)
+    import urllib.error
+    body = json.dumps({"state": state, "questions": questions}).encode()
+    headers = {"Authorization": f"Bearer {DECIDER_KEY}", "Content-Type": "application/json"}
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(DECIDER_URL + "/v1/decide", data=body, headers=headers)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)["answers"]
+        except (urllib.error.URLError, OSError, ConnectionError) as e:
+            if attempt < 2:
+                import time as _t
+                _t.sleep(2 ** attempt)  # 1s, 2s backoff
+            else:
+                print(f"[decider] endpoint failed after 3 retries: {e} -> heuristic fallback", flush=True)
+                return _heuristic_decide(state, questions)
 
 
 def _heuristic_decide(state: str, questions: dict) -> dict:
