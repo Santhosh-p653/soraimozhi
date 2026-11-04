@@ -2,7 +2,6 @@
 __pycache__/
 results/_raw/
 *.webm
-*.mp4
 .env
 *.egg-info/
 .pytest_cache/
