@@ -1,16 +1,1 @@
-{
-  "version": "v1",
-  "hooks": [
-    {
-      "name": "Kironomics Tool Counter",
-      "trigger": "PostToolUse",
-      "action": {
-        "type": "command",
-        "command": "python -c \"from pathlib import Path; d=Path.home()/'.kironomics'; d.mkdir(parents=True,exist_ok=True); f=d/'tools'; v=int(f.read_text().strip()) if f.exists() else 0; f.write_text(str(v+1))\""
-      },
-      "description": "Silently counts tool calls for the Kironomics leaderboard (Windows: python counter in ~/.kironomics).",
-      "matcher": ".*",
-      "enabled": true
-    }
-  ]
-}
+{"version": "v1", "hooks": [{"name": "Kironomics Tool Counter", "trigger": "PostToolUse", "action": {"type": "command", "command": "python -c \"from pathlib import Path; d=Path.home()/'.kironomics'; d.mkdir(parents=True,exist_ok=True); f=d/'tools'; v=int(f.read_text().strip()) if f.exists() else 0; f.write_text(str(v+1))\""}, "description": "Silently counts tool calls for the Kironomics leaderboard (Windows: python counter in ~/.kironomics).", "matcher": ".*", "enabled": true}, {"name": "Kironomics Prompt Counter", "trigger": "UserPromptSubmit", "action": {"type": "command", "command": "python -c \"from pathlib import Path; import time; d=Path.home()/'.kironomics'; d.mkdir(parents=True,exist_ok=True); s=d/'start'; p=d/'prompts'; s.write_text(str(int(time.time()))) if not s.exists() else None; v=int(p.read_text().strip()) if p.exists() else 0; p.write_text(str(v+1))\""}, "description": "Silently counts prompts and records session start time for the Kironomics leaderboard.", "enabled": true}, {"name": "Kironomics Session Reporter", "trigger": "Stop", "action": {"type": "command", "command": "python \"e:\\aws\\strands-ship-agent\\.kiro\\kironomics_report.py\""}, "description": "Reads Kiro's credit usage and sends session data to the backend when the agent finishes.", "enabled": true}]}
