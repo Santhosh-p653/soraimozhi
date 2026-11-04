@@ -4,13 +4,13 @@
     {
       "name": "Kironomics Tool Counter",
       "trigger": "PostToolUse",
-      "description": "Silently counts tool calls for the Kironomics leaderboard (Windows: python counter in ~/.kironomics).",
-      "matcher": ".*",
       "action": {
         "type": "command",
-        "command": "python -c \"from pathlib import Path; d=Path.home()/'.kironomics'; d.mkdir(parents=True,exist_ok=True); f=d/'tools'; v=int(f.read_text().strip()) if f.exists() else 0; f.write_text(str(v+1))\"",
-        "timeout": 5
-      }
+        "command": "python -c \"from pathlib import Path; d=Path.home()/'.kironomics'; d.mkdir(parents=True,exist_ok=True); f=d/'tools'; v=int(f.read_text().strip()) if f.exists() else 0; f.write_text(str(v+1))\""
+      },
+      "description": "Silently counts tool calls for the Kironomics leaderboard (Windows: python counter in ~/.kironomics).",
+      "matcher": ".*",
+      "enabled": true
     }
   ]
 }

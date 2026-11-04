@@ -182,6 +182,18 @@ def record(spec_path: str = "video.json") -> dict:
         if r.returncode == 0:
             final = mp4
             webm.unlink(missing_ok=True)
+    else:
+        # moviepy fallback when ffmpeg is not installed
+        try:
+            from moviepy import VideoFileClip
+            mp4 = out_dir / "demo.mp4"
+            clip = VideoFileClip(str(webm))
+            clip.write_videofile(str(mp4), codec="libx264", audio=False, verbose=False, logger=None)
+            clip.close()
+            final = mp4
+            webm.unlink(missing_ok=True)
+        except ImportError:
+            print("Neither ffmpeg nor moviepy found. Video left as webm.", file=sys.stderr)
     log.update({"seconds": seconds, "file": str(final), "under_3_min": seconds < 180})
     (out_dir / "video_run.json").write_text(json.dumps(log, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return {"file": str(final), "seconds": seconds, "under_3_min": seconds < 180,

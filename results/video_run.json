@@ -1,0 +1,118 @@
+{
+  "spec": {
+    "title": "SoraiMozhi",
+    "subtitle": "Tamil-first drain-blockage triage for Madurai's 27 vulnerable flood zones",
+    "tags": [
+      "#strands-agents",
+      "#social-good",
+      "#climate-resilience",
+      "#tamil"
+    ],
+    "closing": "SoraiMozhi — built with Strands Agents SDK for the Workshop to Ship hackathon",
+    "scenes": [
+      {
+        "title": "A normal drain blockage report",
+        "caption": "Resident reports a blocked drain in SS Colony. The agent parses the zone, classifies urgency, and tells them what to do — in Tamil.",
+        "input": "எஸ்.எஸ். காலனி தெருவில் குப்பை தண்ணீரில் அடித்துச் செல்லப்பட்டு வடிகால் அடைபட்டுள்ளது",
+        "command": "python -m agent.app \"எஸ்.எஸ். காலனி தெருவில் குப்பை தண்ணீரில் அடித்துச் செல்லப்பட்டு வடிகால் அடைபட்டுள்ளது\""
+      },
+      {
+        "title": "A canal overflow — must escalate",
+        "caption": "Resident reports Panthalkudi canal overflowing in Sellur. The crisis hook fires, the Decider classifies it as emergency, and the agent hands off to 108/1077 — no model output touches this.",
+        "input": "செல்லூர் பந்தால்குடி கால்வாய் நிரம்பி வழிகிறது, வெள்ளம் வீட்டுக்குள் நுழைகிறது",
+        "command": "python -m agent.app \"செல்லூர் பந்தால்குடி கால்வாய் நிரம்பி வழிகிறது, வெள்ளம் வீட்டுக்குள் நுழைகிறது\""
+      },
+      {
+        "title": "A life-safety emergency — crisis hook stops the model",
+        "caption": "Someone reports a child drowning. The crisis hook cancels every agent and returns fixed Tamil handoff text. The model never gets a chance to respond.",
+        "input": "என் பிள்ளை தண்ணீரில் மூழ்கிவிட்டார், காலவாசல் பகுதி, உடனே உதவவும்",
+        "command": "python -m agent.app \"என் பிள்ளை தண்ணீரில் மூழ்கிவிட்டார், காலவாசல் பகுதி, உடனே உதவவும்\""
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "title": "A normal drain blockage report",
+      "command": "python -m agent.app \"எஸ்.எஸ். காலனி தெருவில் குப்பை தண்ணீரில் அடித்துச் செல்லப்பட்டு வடிகால் அடைபட்டுள்ளது\"",
+      "exit": 1,
+      "evidence": [
+        "[decider] p_emergency 0.60, priority canal_overflow (confidence 0.22)",
+        "[critic] skipped (Tamil case, templates safe by design) -> PASS",
+        "[plan] agent | 5002 ms"
+      ],
+      "output": [
+        "[decider] p_emergency 0.60, priority canal_overflow (confidence 0.22)",
+        "[critic] skipped (Tamil case, templates safe by design) -> PASS",
+        "[plan] agent | 5002 ms",
+        "Traceback (most recent call last):",
+        "  File \"<frozen runpy>\", line 198, in _run_module_as_main",
+        "  File \"<frozen runpy>\", line 88, in _run_code",
+        "  File \"E:\\aws\\strands-ship-agent\\agent\\app.py\", line 395, in <module>",
+        "    sys.exit(main())",
+        "             ~~~~^^",
+        "  File \"E:\\aws\\strands-ship-agent\\agent\\app.py\", line 387, in main",
+        "    print(f\"\\n[{plan['severity'].upper()}] {plan['zone_name']} - {plan['report_type']}\")",
+        "    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode",
+        "    return codecs.charmap_encode(input,self.errors,encoding_table)[0]",
+        "           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "UnicodeEncodeError: 'charmap' codec can't encode characters in position 9-11: character maps to <undefined>"
+      ]
+    },
+    {
+      "title": "A canal overflow — must escalate",
+      "command": "python -m agent.app \"செல்லூர் பந்தால்குடி கால்வாய் நிரம்பி வழிகிறது, வெள்ளம் வீட்டுக்குள் நுழைகிறது\"",
+      "exit": 1,
+      "evidence": [
+        "[decider] p_emergency 0.51, priority drain_blockage (confidence 0.22)",
+        "[critic] skipped (Tamil case, templates safe by design) -> PASS",
+        "[plan] agent | 3710 ms"
+      ],
+      "output": [
+        "[decider] p_emergency 0.51, priority drain_blockage (confidence 0.22)",
+        "[critic] skipped (Tamil case, templates safe by design) -> PASS",
+        "[plan] agent | 3710 ms",
+        "Traceback (most recent call last):",
+        "  File \"<frozen runpy>\", line 198, in _run_module_as_main",
+        "  File \"<frozen runpy>\", line 88, in _run_code",
+        "  File \"E:\\aws\\strands-ship-agent\\agent\\app.py\", line 395, in <module>",
+        "    sys.exit(main())",
+        "             ~~~~^^",
+        "  File \"E:\\aws\\strands-ship-agent\\agent\\app.py\", line 387, in main",
+        "    print(f\"\\n[{plan['severity'].upper()}] {plan['zone_name']} - {plan['report_type']}\")",
+        "    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode",
+        "    return codecs.charmap_encode(input,self.errors,encoding_table)[0]",
+        "           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "UnicodeEncodeError: 'charmap' codec can't encode characters in position 14-21: character maps to <undefined>"
+      ]
+    },
+    {
+      "title": "A life-safety emergency — crisis hook stops the model",
+      "command": "python -m agent.app \"என் பிள்ளை தண்ணீரில் மூழ்கிவிட்டார், காலவாசல் பகுதி, உடனே உதவவும்\"",
+      "exit": 1,
+      "evidence": [],
+      "output": [
+        "Traceback (most recent call last):",
+        "  File \"<frozen runpy>\", line 198, in _run_module_as_main",
+        "  File \"<frozen runpy>\", line 88, in _run_code",
+        "  File \"E:\\aws\\strands-ship-agent\\agent\\app.py\", line 395, in <module>",
+        "    sys.exit(main())",
+        "             ~~~~^^",
+        "  File \"E:\\aws\\strands-ship-agent\\agent\\app.py\", line 382, in main",
+        "    out = run({\"text\": a.text})",
+        "  File \"E:\\aws\\strands-ship-agent\\agent\\app.py\", line 179, in run",
+        "    print(f\"[safety] RED FLAG ({', '.join(crisis_hits)}) -> HAND OFF, agents cancelled\", flush=True)",
+        "    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode",
+        "    return codecs.charmap_encode(input,self.errors,encoding_table)[0]",
+        "           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "UnicodeEncodeError: 'charmap' codec can't encode characters in position 19-24: character maps to <undefined>"
+      ]
+    }
+  ],
+  "started": "2026-11-02 23:11:42",
+  "seconds": 199.6,
+  "file": "results\\demo.webm",
+  "under_3_min": false
+}
